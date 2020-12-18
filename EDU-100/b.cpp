@@ -12,31 +12,25 @@ using namespace std;
 void Solve(){
     int n;
     cin >> n;
-    vector<ll> v(n), a(n);
-    ll sum =0;
+    vector<int> v(n);
+    ll odd=0, even=0;
     for(int i=0; i<n; i++){
         cin >> v[i];
-        a[i] = v[i];
-        sum+=v[i];
+        if(i&1) odd+=v[i];
+        else even+=v[i];
     }
-    ll avg = 0;
-    sort(all(a));
-    if(n%2==0) {
-        avg = (a[n/2]+a[(n/2)-1])/2;
+    // changing smaller value to 1 give less delta
+    if(odd <= even){
+         for(int i=1; i<n; i+=2){
+            v[i]=1;
+         }
     }
     else{
-        avg = a[(n/2)];
+        for(int i=0; i<n; i+=2){
+            v[i]=1;
+        }
     }
-    vector<ll> b(n);
-    ll diff  = 0;
-    for(int i=0; i<n; i++){
-        ll temp = avg*(v[i]/avg);
-        if(temp==0) temp = 1;
-        b[i] = temp;
-        //diff += abs(v[i]-b[i]);
-    }
-    //cout << "diff " << 2*diff << " " << "sum "  << sum << '\n';
-    for(auto i : b) cout << i << " ";
+    for(auto i: v) cout << i << ' ';
     cout << '\n';
 }
 
