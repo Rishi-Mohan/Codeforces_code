@@ -16,7 +16,7 @@ void Solve(){
     for(ll i=0; i<=n; i++){
         ll x;
         cin >> x;
-        p.insert({x,i+1});
+        p.insert({x,i});
     }
     for(ll i=0; i<n; i++){
         // small

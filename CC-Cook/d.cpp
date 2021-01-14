@@ -12,37 +12,24 @@ using namespace std;
 void Solve(){
     ll n, m;
     cin >> n >> m;
-    vector<ll> v(m);
+    int GCD = 0;
     for(int i=0; i<m; i++) {
-        ll x;
+        int x;
         cin >> x;
-        v[i] = x;
+        if(i!=0) GCD = __gcd(x, GCD);
+        else GCD = x;
     }
-   
-    ll ans = 0;
-    while(1){
-        bool ok = 0;
-        for(int i=0; i<m; i++){
-            ll r = v[i];
-            ll sum = 0;
-            if(v[i]>n) {
-                r = r%n;
-                sum = n/2;
+    int max_factor = 0;
+    if(GCD >= n){
+        for(int i=1; i*i<=GCD; i++){
+            if(GCD%i==0){
+                if(n>=i) max_factor = max(i, max_factor); 
+                if(n>=(GCD/i)) max_factor = max(GCD/i, max_factor); 
             }
-            else
-              sum = n-r;
-
-            //if(r==0) continue;
-            cout << ans << '\n';
-            if(r==0 || sum<=0) break;
-            ans += sum;
-            n -= sum;
-            ok = 1;
-            break;
         }
-        if(!ok) break;
     }
-    cout << ans << '\n';
+    else max_factor = GCD;
+    cout << n-max_factor<< '\n';
 }
 
 int main(){

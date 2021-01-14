@@ -1,6 +1,6 @@
-/*
+/* 
    author: rishi_mohan
-   created_at: Wed 06 Jan 2021 05:32 PM
+   created_at: Wed 30 Dec 2020 07:59 PM
 */
 #include<bits/stdc++.h>
 using namespace std;
@@ -9,20 +9,18 @@ using namespace std;
 #define    rep(i,a,b)    for(int i=a; i<b; i++)
 #define    all(x)        (x).begin(),(x).end()
 
-// ceil((a+b)/x) <= ceil(a/x) + ceil(b/x)
-
 void Solve(){
-    int n, x;
-    cin >> n >> x;
-    ll sum = 0;
-    ll maximum = 0, minimum = 0;
+    int n;
+    cin >> n;
+    vector<int> v(n);
+    for(int i=0; i<n; i++) cin >> v[i];
+    unordered_set<int> s;
     for(int i=0; i<n; i++){
-        int num; cin >> num;
-        sum += num;
-        maximum += ceil((num*1.0)/x);
+        for(int j=i+1; j<n; j++){
+            s.insert(v[j]-v[i]);
+        }
     }
-    minimum = ceil((sum*1.0)/x);
-    cout << minimum << ' ' << maximum << '\n';
+    cout << s.size() << '\n';
 }
 
 int main(){
@@ -31,3 +29,4 @@ int main(){
 	cin >> t;
 	while(t--) Solve();
 }
+

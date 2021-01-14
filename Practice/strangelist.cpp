@@ -1,6 +1,6 @@
-/*
+/* 
    author: rishi_mohan
-   created_at: Wed 06 Jan 2021 05:32 PM
+   created_at: Wed 06 Jan 2021 11:28 AM
 */
 #include<bits/stdc++.h>
 using namespace std;
@@ -9,21 +9,27 @@ using namespace std;
 #define    rep(i,a,b)    for(int i=a; i<b; i++)
 #define    all(x)        (x).begin(),(x).end()
 
-// ceil((a+b)/x) <= ceil(a/x) + ceil(b/x)
-
 void Solve(){
     int n, x;
     cin >> n >> x;
-    ll sum = 0;
-    ll maximum = 0, minimum = 0;
+    ll ans = 0;
     for(int i=0; i<n; i++){
-        int num; cin >> num;
-        sum += num;
-        maximum += ceil((num*1.0)/x);
+        int num, NUM;
+        cin >> num;
+        NUM = num;
+        ans += num;
+        int cnt = 0;
+        while(num%x==0){
+            num/=x;
+            cnt++;
+        }
+        
+        cout << cnt << '\n';
+        ans += (cnt*NUM);
     }
-    minimum = ceil((sum*1.0)/x);
-    cout << minimum << ' ' << maximum << '\n';
+    cout << ans << '\n';
 }
+//4+4 6 8+8+8 2
 
 int main(){
 	ios_base::sync_with_stdio(false);
@@ -31,3 +37,4 @@ int main(){
 	cin >> t;
 	while(t--) Solve();
 }
+
