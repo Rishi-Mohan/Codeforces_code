@@ -28,7 +28,7 @@ void Solve(){
             break;
         }
     }
-    for(int i=0; i<k ;i+=m){
+    for(int i=0; i<k; i+=m){
         if(ans.substr(i,m)!=b){
             ok = 0;
             break;
